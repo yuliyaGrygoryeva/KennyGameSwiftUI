@@ -10,17 +10,17 @@ import SwiftUI
 struct FirstScreen: View {
     
     var viewModel = ViewModel()
-    let timer = Timer.publish(every: 1, on: .main, in: .common).autoconnect()
-    @State var kenny1: KennyImage = KennyImage()
-    @State var kenny2: KennyImage = KennyImage()
-    @State var kenny3: KennyImage = KennyImage()
-    @State var kenny4: KennyImage = KennyImage()
-    @State var kenny5: KennyImage = KennyImage()
-    @State var kenny6: KennyImage = KennyImage()
-    @State var kenny7: KennyImage = KennyImage()
-    @State var kenny8: KennyImage = KennyImage()
-    @State var kenny9: KennyImage = KennyImage()
-    @State private var timeRemaining = 100
+    var timer = Timer.publish(every: 1, on: .main, in: .common).autoconnect()
+    @State var kenny1: KennyObject = KennyObject()
+    @State var kenny2: KennyObject = KennyObject()
+    @State var kenny3: KennyObject = KennyObject()
+    @State var kenny4: KennyObject = KennyObject()
+    @State var kenny5: KennyObject = KennyObject()
+    @State var kenny6: KennyObject = KennyObject()
+    @State var kenny7: KennyObject = KennyObject()
+    @State var kenny8: KennyObject = KennyObject()
+    @State var kenny9: KennyObject = KennyObject()
+    @State private var timeRemaining = 10
     @State var score: Int = 0
     @State var highScore: Int = 0
     @State var counter = 10
@@ -33,8 +33,7 @@ struct FirstScreen: View {
                 Text("Kenny Game")
                     .font(.title)
                     .bold()
-                
-                //            Spacer()
+                    .padding(20)
                 Text("Timer: \(timeRemaining)")
                     .font(.largeTitle)
                 Text("Score: \(score)")
@@ -131,27 +130,22 @@ struct FirstScreen: View {
                                 score += 1
                             }
                         }
-//                    ForEach(0...2, id: \.self) {kenny in
-//                        Image(kenny.image)
-//                            .resizable()
-//                            .scaledToFill()
-//                            .frame(minWidth: 0, maxWidth: .infinity, minHeight: 100)
-//                            .cornerRadius(10)
-//                            .onTapGesture {
-//                                //                            if image.isVisible {
-//                                score += 1
-//                                //                            }
-//                            }
-//                    }
                 }
                 Text("HighScore: \(highScore)")
                     .font(.largeTitle)
+                Button("Restart") {
+                    timeRemaining = 10
+                }
+                .font(.title)
+                .bold()
+                .padding(20)
             }
             .padding(20)
+            
         }.onReceive(timer) { time in
             if timeRemaining > 0 {
                 timeRemaining -= 1
-                var card = viewModel.getRandomNumber()
+                let card = viewModel.getRandomNumber()
                 setVisibleToFalse()
                 if card == 1 {
                     kenny1.isVisible = true
@@ -177,21 +171,6 @@ struct FirstScreen: View {
             }
         }
     }
-    
-//    ForEach([kenny1, kenny2, kenny3, kenny4, kenny5, kenny6, kenny7, kenny8, kenny9], id: \.self) { kenny in
-//        Image(kenny.image)
-//            .resizable()
-//            .scaledToFill()
-//            .frame(minWidth: 0, maxWidth: .infinity, minHeight: 100)
-//            .cornerRadius(10)
-//            .opacity(kenny.opacity)                        .onTapGesture {
-//                if kenny.isVisible {
-//                    score += 1
-//                }
-//            }
-//    }
- 
-    
 }
 
 struct ContentView_Previews: PreviewProvider {

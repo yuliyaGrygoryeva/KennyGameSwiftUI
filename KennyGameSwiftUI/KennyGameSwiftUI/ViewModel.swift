@@ -13,7 +13,7 @@ class ViewModel {
         Int.random(in: 1...9)
     }
     
-    func setVisible(kenny: inout KennyImage) {
+    func setVisible(kenny: inout KennyObject) {
         kenny.isVisible = true
     }
 }

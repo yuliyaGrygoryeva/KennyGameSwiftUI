@@ -8,9 +8,9 @@
 import Foundation
 import SwiftUI
 
-class KennyImage: Hashable {
+class KennyObject: Hashable {
     
-    static func == (lhs: KennyImage, rhs: KennyImage) -> Bool {
+    static func == (lhs: KennyObject, rhs: KennyObject) -> Bool {
         lhs.image == rhs.image && lhs.isVisible == rhs.isVisible && rhs.isVisible == lhs.isVisible && rhs.opacity == lhs.opacity
     }
     
